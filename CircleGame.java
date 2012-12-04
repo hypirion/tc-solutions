@@ -1,19 +1,10 @@
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class CircleGame {
 
 	public int cardsLeft(String deck) {
-		HashMap<Character, Integer> lookup = new HashMap<Character, Integer>(){{
-			put('A', 1); put('2', 2);
-			put('3', 3); put('4', 4);
-			put('5', 5); put('6', 6);
-			put('7', 7); put('8', 8);
-			put('9', 9); put('T', 10);
-			put('J', 11); put('Q', 12);
-			put('K', 13);
-		}};
+		String lookup = "-A23456789TJQK";
 		LinkedList<Character> ll = new LinkedList<Character>();
 		for (char c : deck.toCharArray())
 			ll.add(c);
@@ -29,7 +20,7 @@ public class CircleGame {
 			Arrays.sort(vs);
 			int sum = 0;
 			for (int v : vs)
-				sum += lookup.get(ll.get(v));
+				sum += lookup.indexOf(ll.get(v));
 			if (sum == 13){
 				ll.remove(vs[1]);
 				ll.remove(vs[0]);
